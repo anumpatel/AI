@@ -1,3 +1,39 @@
+/*
+This is a constraints satisfaction problem. Consider the following logic puzzle: In five houses, each of a different color, live five persons, each of a different nationality, each of whom prefers a different brand of candy, a different kind of pet, and a different drink.  We are given the following knowledge base:
+The Englishman lives in the red house. 
+The Spaniard owns the dog.
+The Norwegian lives in the first house on the left.
+The green house is immediately to the right of the ivory house.
+The man who eats Hershey-bars lives in the house next to the man with the fox.
+Kit-Kats are eaten in the yellow house.
+The Norwegian lives next to the blue house.
+The Smarties eater owns snails.
+The Snickers eater drinks orange juice.
+The Ukrainian drinks tea.
+The Japanese eats Milky-Ways.
+Kit-Kats are eaten in a house next to the house where the horse is kept.
+Coffee is drunk in the green house.
+Milk is drunk in the middle house.
+
+Write a FRIL program which would allow you to implement this KB and allow you to answer various questions such as:
+What color is the house in which the Norwegian lives? 
+What color is the house in which the zebra lives? 
+In which house is wine drank?
+In which house are Smarties eaten and orange juice drank?
+What color is the fifth house (last house on the right)?
+Who drinks what?
+Etc.
+
+If a query cannot be answered directly from the knowledge base, your program should generate possible answers.  For example, suppose the query is “who drinks water?”  The knowledge base contains no clause on anybody drinking water.  Rather than let the query fail, the program should output possible answers, for example “nobody drinks water”, or, eliminating those for which it can find what they drink, display the answer in the format “possibly <nationality> drinks water”.
+
+Please turn in your program, along with a sample of runs attached to your program file as comments.
+
+
+
+*/
+
+/*************SOLUTION********/
+
 
 ((building PUZZLE)
 	(length PUZZLE 5)										/** Specify the length of your list */

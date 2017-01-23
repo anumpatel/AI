@@ -1,0 +1,65 @@
+
+((building PUZZLE)
+	(length PUZZLE 5)										/** Specify the length of your list */
+	(member (Norwegian _ _ _ _) PUZZLE)
+	(member (Englishman Red _ _ _) PUZZLE)
+	(member (Spaniard _ _ _ Dog) PUZZLE)
+	(next (_ Ivory _ _ _) (_ Green _ _ _) PUZZLE)
+	(next (_ _ _ Hershey-bars _) (_ _ _ _ Fox) PUZZLE)
+	(member (_ Yellow _ Kit-Kat _) PUZZLE)
+	(next (Norwegian _ _ _ _) (_ Blue _ _ _) PUZZLE)
+	(member (_ _ _ Smarties Snails) PUZZLE)
+	(member (_ _ Orange Snickers _) PUZZLE)
+	(member (Ukranian _ Tea _ _) PUZZLE)
+	(member (Japanese _ _ Milky-Ways _) PUZZLE)
+	(next (_ _ _ Kit-Kat _) (_ _ _ _ Horse) PUZZLE)
+	(member (_ Green Coffee _ _) PUZZLE)
+	(middle (_ _ Milk _ _) PUZZLE)
+)
+
+/******** Auxiliary Predicates ***********/
+
+/** length function*/
+((length () 0 ))
+((length (_|T) N)
+           (length T N1)
+           (sum N1 1 N))
+
+((member H (H|_) ))
+((member X (_|T))(member X T))
+
+((next0 X Y (X Y _ _ _) ))
+((next0 X Y (_ X Y _ _) ))
+((next0 X Y (_ _ X Y _) ))
+((next0 X Y (_ _ _ X Y) ))
+
+((next X Y LIST)(next0 X Y LIST))
+((next X Y LIST)(next0 Y X LIST))
+
+((middle X (_ _ X _ _) ))
+
+/*********** Solution to Queries ***********/
+
+/** query to check the Knowledge base */
+?((building PUZZLE)(pp PUZZLE))
+
+/*What color is the house in which the Norwegian lives?*/
+?((building PUZZLE) (member (Norwegian X|_) PUZZLE) (p "Color of house where Norwegian lives is" X ) (pp))
+
+/*What color is the house in which the zebra lives?*/
+?((building PUZZLE) (member (_ X _ _ Zebra) PUZZLE) (p "Color of house where zebra is the pet is" X) (pp))
+
+/*In which house is wine drank?*/
+?((building PUZZLE) (member (_ X Wine _ _) PUZZLE) (p "Color of house where wine is drank is" X) (pp))
+
+/*In which house are Smarties eaten and orange juice drank?*/
+?((building PUZZLE) (findall (X) ((member (_ X Orange Smarties _) PUZZLE)) RESULT) (pp "Color of house where Orange juice is drank and Smarties are eaten is" RESULT))
+
+/*What color is the fifth house (last house on the right)?*/
+?((building (_ _ _ _ (_ X|_))) (p "Color of house which is 5th is" X) (pp))
+
+/*Who drinks what?*/
+?((building PUZZLE) (findall (X D) ((member (X _ D _ _) PUZZLE)) RESULT) (pp RESULT))
+
+/*Who drinks water?*/
+?((building PUZZLE) (findall (X) ((member (X _ Water _ _) PUZZLE)) RESULT) (p "possibly "RESULT" drinks water"))
